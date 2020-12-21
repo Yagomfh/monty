@@ -12,6 +12,7 @@ int main(int ac, char **av)
 	size_t len = 0;
 	char *token, *code, *delim = " \n", *line = NULL;
 	int line_count = 0;
+
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -22,7 +23,9 @@ int main(int ac, char **av)
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(av[1], "r");	
+
+	stack = NULL;
+	file = fopen(av[1], "r");
 	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, delim);
@@ -34,9 +37,11 @@ int main(int ac, char **av)
 		code = strtok(NULL, delim);
 		line_count++;
 		if (code != NULL)
-			function_push(token, line_count);
+			if (function_check(token, line_count) == -1)
+				exit(EXIT_FAILURE);
 		else
-			function_check(token, code, line_count);
+			if (function_push(token, code, line_count) == -1)
+				exit(EXIT_FAILURE);
 	}
 	free(line);
 	fclose(file);

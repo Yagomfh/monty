@@ -106,7 +106,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
 	stack_t *new, *last = *head;
 
-	new = malloc(sizeof(dlistint_t));
+	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 		return (NULL);
 

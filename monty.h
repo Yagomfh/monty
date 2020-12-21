@@ -21,8 +21,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-stack_t *head;
-
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -38,8 +36,8 @@ typedef struct instruction_s
 } instruction_t;
 
 /* check_opcode */
-int function_check(char *opcode, unsigned int lc);
-int function_push(char *opcode, char *code, unsigned int lc);
+int function_check(char *opcode, unsigned int lc, stack_t **head);
+int function_push(char *opcode, char *code, unsigned int lc, stack_t **head);
 
 /** manage stack **/
 void free_stack(stack_t *head);

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int function_check(char *opcode, unsigned int lc)
+int function_check(char *opcode, unsigned int lc, stack_t **head)
 {
 	int i = 0, idx = 0;
 
@@ -18,7 +18,7 @@ int function_check(char *opcode, unsigned int lc)
 	{
 		if (!strcmp(opcode, ops[i].opcode))
 		{
-			ops[idx].f(&head, lc);
+			ops[idx].f(head, lc);
 			break;
 		}
 		idx++;
@@ -31,9 +31,9 @@ int function_check(char *opcode, unsigned int lc)
 	}
 	return (0);
 }
-int function_push(char *opcode, char *code, unsigned int lc)
+int function_push(char *opcode, char *code, unsigned int lc, stack_t **head)
 {
-	int i = 0, is_char = 0, nb_code = 0;
+	int i = 0, nb_code = 0;
 
 	if (strcmp("push", opcode) != 0)
 	{
@@ -55,7 +55,7 @@ int function_push(char *opcode, char *code, unsigned int lc)
 		i++;
 	}
 	nb_code = atoi(code);
-	add_dnodeint(&head, nb_code);
+	add_dnodeint(head, nb_code);
 	return (0);
 }
 

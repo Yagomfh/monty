@@ -8,11 +8,12 @@ int function_check(char *opcode, unsigned int lc, stack_t **head)
 		{"pall", _pall}, {"pint", _pint},
 		{"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop},
-		{"sub", _sub}, {"div", _div},
-		{"mul", _mul}, {"mod", _mod},
-		{"pchar", _pchar}, {"#", _comment},
-		{"pstr", _pstr}, {"rotl", _rotl},
-		{"rotr", _rotr},
+		/*{"sub", _sub},*/ {"div", _div},
+		/*{"mul", _mul},*/ {"mod", _mod},
+		{"pchar", _pchar}, /*{"#", _comment},
+		{"pstr", _pstr}, */{"rotl", _rotl},/*
+		{"rotr", _rotr},*/{"stack", _stack},
+		{"queue", _queue},
 		{NULL, NULL}
 	};
 
@@ -57,7 +58,10 @@ int function_push(char *opcode, char *code, unsigned int lc, stack_t **head)
 		i++;
 	}
 	nb_code = atoi(code);
-	add_dnodeint(head, nb_code);
+	if (format_data == 's')
+		add_dnodeint(head, nb_code);
+	else
+		add_dnodeint_end(head, nb_code);
 	return (0);
 }
 

@@ -26,7 +26,7 @@ int main(int ac, char **av)
 		fclose(file);
 		exit(EXIT_FAILURE);
 	}
-	head = NULL;
+	head = NULL, format_data = 's';
 	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, delim);

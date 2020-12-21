@@ -46,3 +46,19 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	free(current);
 	add_dnodeint_end(stack, tmp);
 }
+
+void _stack(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+	(void)stack;
+
+	format_data = 's';
+}
+
+void _queue(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+
+	format_data = 'q';
+}

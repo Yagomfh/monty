@@ -43,6 +43,7 @@ int function_push(char *opcode, char *code, unsigned int lc, stack_t **head);
 void free_stack(stack_t *head);
 stack_t *add_dnodeint(stack_t **head, int n);
 size_t print_dlistint(const stack_t *h);
+size_t stack_len(stack_t *h)
 
 /** opcode function **/
 void _pall(stack_t **stack, unsigned int line_number);

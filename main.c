@@ -30,7 +30,7 @@ int main(int ac, char **av)
 	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, delim);
-		if (token == NULL)
+		if (token == NULL || token[0] == '#')
 		{
 			line_count++;
 			continue;

@@ -12,6 +12,7 @@ int main(int ac, char **av)
 	size_t len = 0;
 	char *token, *code, *delim = " \n", *line = NULL;
 	unsigned int line_count = 0;
+	stack_t *head;
 
 	if (ac != 2)
 	{
@@ -25,7 +26,6 @@ int main(int ac, char **av)
 		fclose(file);
 		exit(EXIT_FAILURE);
 	}
-	fclose(file);
 	head = NULL;
 	while ((getline(&line, &len, file)) != -1)
 	{
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 		line_count++;
 		if (code == NULL && strcmp(token, "push") != 0)
 		{
-			if (function_check(token, line_count) == -1)
+			if (function_check(token, line_count, &head) == -1)
 			{
 				free_stack(head);
 				exit(EXIT_FAILURE);
@@ -47,18 +47,15 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			if (function_push(token, code, line_count) == -1)
+			if (function_push(token, code, line_count, &head) == -1)
 			{
 				free_stack(head);
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
 	print_dlistint(head);
 	fclose(file);
->>>>>>> b36fa45aee3d45d4516104e04849804e9fbadcfe
 	free(line);
 	free_stack(head);
 	return (0);

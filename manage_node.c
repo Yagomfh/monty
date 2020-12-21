@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
-  * add_dnodeint - adds a new node at the beginning of a dlistint_t list
-  * @head: pointer to head node
-  * @n: data to add to node
-  * Return: address of the new element, or NULL if it failed
-  */
+ * add_dnodeint - adds a new node at the beginning of a dlistint_t list
+ * @head: pointer to head node
+ * @n: data to add to node
+ * Return: address of the new element, or NULL if it failed
+ */
 
 stack_t *add_dnodeint(stack_t **head, int n)
 {
@@ -31,10 +31,10 @@ stack_t *add_dnodeint(stack_t **head, int n)
 	return (new);
 }
 /**
-  * free_dlistint - frees a dlistint_t list
-  * @head: pointer to head node
-  * Return: void
-  */
+ * free_dlistint - frees a dlistint_t list
+ * @head: pointer to head node
+ * Return: void
+ */
 
 void free_stack(stack_t *head)
 {
@@ -51,10 +51,10 @@ void free_stack(stack_t *head)
 	free(current);
 }
 /**
-  * print_dlistint - prints all the elements of a dlistint_t list
-  * @h: pointer to head node
-  * Return: the number of nodes
-  */
+ * print_dlistint - prints all the elements of a dlistint_t list
+ * @h: pointer to head node
+ * Return: the number of nodes
+ */
 
 size_t print_dlistint(const stack_t *h)
 {
@@ -72,4 +72,25 @@ size_t print_dlistint(const stack_t *h)
 	printf("%d\n", h->n);
 	i++;
 	return (i);
+}
+
+/**
+ * dlistint_len - number of elements in a linked dlistint_t list
+ * @h: pointer to head node
+ * Return: number of elements
+ */
+
+size_t dlistint_len(const dlistint_t *h)
+{
+	size_t len = 0;
+
+	if (h == NULL)
+		return (0);
+	while (h->next)
+	{
+		len++;
+		h = h->next;
+	}
+	len++;
+	return (len);
 }

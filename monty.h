@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -20,7 +21,7 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-stack_t *stack;
+stack_t *head;
 
 /**
  * struct instruction_s - opcode and its function
@@ -37,7 +38,11 @@ typedef struct instruction_s
 } instruction_t;
 
 /* check_opcode */
-int function_check(char *opcode, int lc);
-int function_push(char *opcode, char *code, int lc);
+int function_check(char *opcode, unsigned int lc);
+int function_push(char *opcode, char *code, unsigned int lc);
 
+/** manage stack **/
+void free_stack(stack_t *head);
+stack_t *add_dnodeint(stack_t **head, int n);
+size_t print_dlistint(const stack_t *h);
 #endif

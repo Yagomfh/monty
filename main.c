@@ -11,7 +11,7 @@ int main(int ac, char **av)
 	FILE *file;
 	size_t len = 0;
 	char *token, *code, *delim = " \n", *line = NULL;
-	int line_count = 0;
+	unsigned int line_count = 0;
 
 	if (ac != 2)
 	{
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	stack = NULL;
+	head = NULL;
 	file = fopen(av[1], "r");
 	while ((getline(&line, &len, file)) != -1)
 	{
@@ -36,14 +36,26 @@ int main(int ac, char **av)
 		}
 		code = strtok(NULL, delim);
 		line_count++;
-		if (code != NULL)
+		if (code == NULL && strcmp(token, "push") != 0)
+		{
 			if (function_check(token, line_count) == -1)
+			{
+				free_stack(head);
 				exit(EXIT_FAILURE);
+			}
+		}
 		else
+		{
 			if (function_push(token, code, line_count) == -1)
+			{
+				free_stack(head);
 				exit(EXIT_FAILURE);
+			}
+		}
 	}
+	print_dlistint(head);
 	free(line);
+	free_stack(head);
 	fclose(file);
 	return (0);
 }

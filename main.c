@@ -23,7 +23,7 @@ int main(int ac, char **av)
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-
+	fclose(file);
 	head = NULL;
 	file = fopen(av[1], "r");
 	while ((getline(&line, &len, file)) != -1)
@@ -53,7 +53,6 @@ int main(int ac, char **av)
 			}
 		}
 	}
-	print_dlistint(head);
 	free(line);
 	free_stack(head);
 	fclose(file);

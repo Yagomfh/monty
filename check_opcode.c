@@ -6,11 +6,11 @@ int function_check(char *opcode, unsigned int lc, stack_t **head)
 
 	instruction_t ops[] = {
 		{"pall", _pall},
-/**		{"pint", _pint},
+/**		{"pint", _pint},**/
 		{"pop", _pop},
-		{"swap", _swap},
+/**		{"swap", _swap},**/
 		{"add", _add},
-		{"nop", _nop},*/
+/**		{"nop", _nop},*/
 		{NULL, NULL}
 	};
 

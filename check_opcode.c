@@ -5,7 +5,7 @@ int function_check(char *opcode, unsigned int lc)
 	int i = 0, idx = 0;
 
 	instruction_t ops[] = {
-/**		{"pall", _pall},**/
+		{"pall", _pall},
 /**		{"pint", _pint},
 		{"pop", _pop},
 		{"swap", _swap},

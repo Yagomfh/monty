@@ -75,12 +75,12 @@ size_t print_dlistint(const stack_t *h)
 }
 
 /**
- * dlistint_len - number of elements in a linked dlistint_t list
+ * stack_len - number of elements in a linked dlistint_t list
  * @h: pointer to head node
  * Return: number of elements
  */
 
-size_t dlistint_len(const dlistint_t *h)
+size_t stack_len(stack_t *h)
 {
 	size_t len = 0;
 

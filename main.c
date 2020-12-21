@@ -54,7 +54,6 @@ int main(int ac, char **av)
 			}
 		}
 	}
-	print_dlistint(head);
 	fclose(file);
 	free(line);
 	free_stack(head);

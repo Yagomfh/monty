@@ -18,14 +18,15 @@ int main(int ac, char **av)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	if (fopen(av[1], "r") == NULL)
+	file = fopen(av[1], "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 
 	head = NULL;
-	file = fopen(av[1], "r");
 	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, delim);
@@ -54,8 +55,8 @@ int main(int ac, char **av)
 		}
 	}
 	print_dlistint(head);
+	fclose(file);
 	free(line);
 	free_stack(head);
-	fclose(file);
 	return (0);
 }

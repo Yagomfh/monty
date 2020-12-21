@@ -5,12 +5,14 @@ int function_check(char *opcode, unsigned int lc, stack_t **head)
 	int i = 0, idx = 0;
 
 	instruction_t ops[] = {
-		{"pall", _pall},
-/**		{"pint", _pint},**/
-		{"pop", _pop},
-/**		{"swap", _swap},**/
-		{"add", _add},
-/**		{"nop", _nop},*/
+		{"pall", _pall}, {"pint", _pint},
+		{"pop", _pop}, {"swap", _swap},
+		{"add", _add}, {"nop", _nop},
+		{"sub", _sub}, {"div", _div},
+		{"mul", _mul}, {"mod", _mod},
+		{"pchar", _pchar}, {"#", _comment},
+		{"pstr", _pstr}, {"rotl", _rotl},
+		{"rotr", _rotr},
 		{NULL, NULL}
 	};
 

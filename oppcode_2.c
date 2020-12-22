@@ -9,15 +9,10 @@
  */
 void _pstr(stack_t **stack, unsigned int line_number)
 {
-	int length_s = stack_len(*stack);
+	/**int length_s = stack_len(*stack);**/
 	stack_t *head = *stack;
 
 	(void)line_number;
-	if (length_s == 0 || *stack == NULL)
-	{
-		printf("\n");
-		return;
-	}
 	while (head != NULL)
 	{
 		if (head->n == 0 || head->n <= 0 || head->n > 127)

@@ -20,18 +20,19 @@ void _pall(stack_t **stack, unsigned int line_number)
  * @line_number: line number of the command
  * Return: Nothing
  */
-void _pop(stack_t **stack, unsigned int line_number)
+int _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE); /** check if -1 return in main to exit, EXIT_FAILURE **/
+		return (0); /** check if -1 return in main to exit, EXIT_FAILURE **/
 	}
 	tmp = *stack;
 	(*stack) = (*stack)->next;
 	free(tmp);
+	return (0);
 }
 /**
  * _add - add the two first of the stack

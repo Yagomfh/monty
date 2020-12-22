@@ -21,6 +21,8 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+char format_data;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -44,6 +46,7 @@ void free_stack(stack_t *head);
 stack_t *add_dnodeint(stack_t **head, int n);
 size_t print_dlistint(const stack_t *h);
 size_t stack_len(stack_t *h);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 /** opcode function **/
 void _pall(stack_t **stack, unsigned int line_number);
@@ -61,6 +64,6 @@ void _comment(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
-
-
+void _queue(stack_t **stack, unsigned int line_number);
+void _stack(stack_t **stack, unsigned int line_number);
 #endif

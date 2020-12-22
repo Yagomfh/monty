@@ -31,7 +31,7 @@ stack_t *add_dnodeint(stack_t **head, int n)
 	return (new);
 }
 /**
- * free_dlistint - frees a dlistint_t list
+ * free_stack - frees a dlistint_t list
  * @head: pointer to head node
  * Return: void
  */
@@ -93,4 +93,36 @@ size_t stack_len(stack_t *h)
 	}
 	len++;
 	return (len);
+}
+
+/**
+ * add_dnodeint_end - adds a new node at the end of a dlistint_t list
+ * @head: pointer to head node
+ * @n: data of node
+ * Return: address of the new element, or NULL if it failed
+ */
+
+stack_t *add_dnodeint_end(stack_t **head, const int n)
+{
+	stack_t *new, *last = *head;
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+		return (NULL);
+
+	new->n = n;
+	new->next = NULL;
+	if (*head == NULL)
+	{
+		new->prev = NULL;
+		*head = new;
+	}
+	else
+	{
+		while (last->next)
+			last = last->next;
+		new->prev = last;
+		last->next = new;
+	}
+	return (new);
 }

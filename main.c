@@ -1,10 +1,42 @@
 #include "monty.h"
 
 /**
+ * launch_oppcode - check and call function
+ * @t: oppcode token
+ * @f: file descriptor
+ * @code: argument to oppcode
+ * @lc: number of the line of the command
+ * @h: stack
+ * Return: nothing or exit if error
+ */
+int launch_oppcode(char *t, FILE *f, char *code, unsigned int lc, stack_t **h)
+{
+	if (code == NULL && strcmp(t, "push") != 0)
+	{
+		if (function_check(t, lc, h) == -1)
+		{
+			free_stack(*h);
+			fclose(f);
+			return (-1);
+		}
+	}
+	else
+	{
+		if (function_push(t, code, lc, h) == -1)
+		{
+			free_stack(*h);
+			fclose(f);
+			return (-1);
+		}
+	}
+	return (0);
+}
+
+/**
  * main - entry
- *
- *
- *
+ * @ac: nb of args
+ * @av: arguments
+ * Return: exit if error, 0 otherwise
  */
 int main(int ac, char **av)
 {
@@ -26,7 +58,7 @@ int main(int ac, char **av)
 		fclose(file);
 		exit(EXIT_FAILURE);
 	}
-	head = NULL;
+	head = NULL, format_data = 's';
 	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, delim);
@@ -37,21 +69,10 @@ int main(int ac, char **av)
 		}
 		code = strtok(NULL, delim);
 		line_count++;
-		if (code == NULL && strcmp(token, "push") != 0)
+		if (launch_oppcode(token, file, code, line_count, &head) == -1)
 		{
-			if (function_check(token, line_count, &head) == -1)
-			{
-				free_stack(head);
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			if (function_push(token, code, line_count, &head) == -1)
-			{
-				free_stack(head);
-				exit(EXIT_FAILURE);
-			}
+			free(line);
+			exit(EXIT_FAILURE);
 		}
 	}
 	fclose(file);

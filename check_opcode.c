@@ -64,7 +64,7 @@ int function_push(char *opcode, char *code, unsigned int lc, stack_t **head)
 	}
 	while (code[i])
 	{
-		if (isdigit(code[i]) == 0)
+		if (code[i] < 48 && code[i] > 57)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", lc);
 			return (-1);

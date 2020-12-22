@@ -11,11 +11,13 @@ void _pchar(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
+		free(global.line), fclose(global.file);
 		fprintf(stderr, "L%d: can't pchar, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n < 0 || (*stack)->n > 127)
 	{
+		free(global.line), fclose(global.file);
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -46,6 +48,7 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	free(current);
 	if (add_dnodeint_end(stack, tmp) == NULL)
 	{
+		free(global.line), fclose(global.file);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -61,7 +64,7 @@ void _stack(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	(void)stack;
 
-	format_data = 's';
+	global.format_data = 's';
 }
 /**
  * _queue - initialize global var to queue
@@ -74,5 +77,5 @@ void _queue(stack_t **stack, unsigned int line_number)
 	(void)stack;
 	(void)line_number;
 
-	format_data = 'q';
+	global.format_data = 'q';
 }

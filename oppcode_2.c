@@ -53,6 +53,7 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	free(delet);
 	if (add_dnodeint(stack, tmp) == NULL)
 	{
+		free(global.line), fclose(global.file);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}

@@ -15,7 +15,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	while (head != NULL)
 	{
-		if (head->n == 0 || head->n <= 0 || head->n > 127)
+		if (head->n <= 0 || head->n > 127)
 			break;
 		printf("%c", head->n);
 		head = head->next;

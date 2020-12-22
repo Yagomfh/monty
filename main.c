@@ -42,7 +42,7 @@ int main(int ac, char **av)
 {
 	FILE *file;
 	size_t len = 0;
-	char *token, *code, *delim = " \n", *line = NULL;
+	char *token, *code, *delim = " \n\t", *line = NULL;
 	unsigned int line_count = 0;
 	stack_t *head;
 
@@ -55,7 +55,6 @@ int main(int ac, char **av)
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 	head = NULL, format_data = 's';

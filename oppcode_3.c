@@ -12,12 +12,14 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't pchar, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n < 0 || (*stack)->n > 127)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -49,6 +51,7 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	if (add_dnodeint_end(stack, tmp) == NULL)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}

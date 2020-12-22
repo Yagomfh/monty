@@ -20,20 +20,20 @@ void _pall(stack_t **stack, unsigned int line_number)
  * @line_number: line number of the command
  * Return: Nothing
  */
-int _pop(stack_t **stack, unsigned int line_number)
+void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
 	if (*stack == NULL)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		return (0); /** check if -1 return in main to exit, EXIT_FAILURE **/
+		exit(EXIT_FAILURE); /** check if -1 return in main to exit, EXIT_FAILURE **/
 	}
 	tmp = *stack;
 	(*stack) = (*stack)->next;
 	free(tmp);
-	return (0);
 }
 /**
  * _add - add the two first of the stack
@@ -49,6 +49,7 @@ void _add(stack_t **stack, unsigned int line_number)
 	if (length_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -72,6 +73,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 	if (length_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -95,6 +97,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 	if (length_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}

@@ -12,6 +12,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -34,6 +35,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 	if (len_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -72,12 +74,14 @@ void _div(stack_t **stack, unsigned int line_number)
 	if (len_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (current->n == 0)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -103,12 +107,14 @@ void _mod(stack_t **stack, unsigned int line_number)
 	if (len_s < 2)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (current->n == 0)
 	{
 		free(global.line), fclose(global.file);
+		free_stack(*stack);
 		fprintf(stderr, "L%d: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}

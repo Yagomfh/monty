@@ -11,7 +11,7 @@
  */
 int launch_oppcode(char *t, FILE *f, char *code, unsigned int lc, stack_t **h)
 {
-	if (code == NULL && strcmp(t, "push") != 0)
+	if (strcmp(t, "push") != 0)
 	{
 		if (function_check(t, lc, h) == -1)
 		{

@@ -40,9 +40,8 @@ int launch_oppcode(char *t, FILE *f, char *code, unsigned int lc, stack_t **h)
  */
 int main(int ac, char **av)
 {
-	FILE *file;
 	size_t len = 0;
-	char *token, *code, *delim = " \n\t", *line = NULL;
+	char *token, *code, *delim = " \n\t";
 	unsigned int line_count = 0;
 	stack_t *head;
 
@@ -51,16 +50,16 @@ int main(int ac, char **av)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(av[1], "r");
-	if (file == NULL)
+	global.file = fopen(av[1], "r");
+	if (global.file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	head = NULL, format_data = 's';
-	while ((getline(&line, &len, file)) != -1)
+	head = NULL, global.format_data = 's';
+	while ((getline(&(global.line), &len, global.file)) != -1)
 	{
-		token = strtok(line, delim);
+		token = strtok(global.line, delim);
 		if (token == NULL || token[0] == '#')
 		{
 			line_count++;
@@ -68,14 +67,14 @@ int main(int ac, char **av)
 		}
 		code = strtok(NULL, delim);
 		line_count++;
-		if (launch_oppcode(token, file, code, line_count, &head) == -1)
+		if (launch_oppcode(token, global.file, code, line_count, &head) == -1)
 		{
-			free(line);
+			free(global.line);
 			exit(EXIT_FAILURE);
 		}
 	}
-	fclose(file);
-	free(line);
+	fclose(global.file);
+	free(global.line);
 	free_stack(head);
 	return (0);
 }

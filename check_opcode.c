@@ -72,7 +72,7 @@ int function_push(char *opcode, char *code, unsigned int lc, stack_t **head)
 		i++;
 	}
 	nb_code = atoi(code);
-	if (format_data == 's')
+	if (global.format_data == 's')
 	{
 		if (add_dnodeint(head, nb_code) == NULL)
 		{

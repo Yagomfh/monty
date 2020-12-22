@@ -16,7 +16,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pchar, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if ((*stack)->n < 0 || (*stack)->n > 127)
+	if (isascii((*stack)->n) == 0)
 	{
 		free(global.line), fclose(global.file);
 		free_stack(*stack);
